@@ -1,0 +1,45 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 9
+  },
+  "globals": {
+    "expect": true,
+    "sinon": true
+  },
+  "rules": {
+    "eqeqeq": 0,
+    "valid-jsdoc": "error",
+    "keyword-spacing": "error",
+    "no-unexpected-multiline": 0,
+    "quotes": [2, "single", {"allowTemplateLiterals": true}],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ArrayExpression": 1,
+        "ObjectExpression": 1
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-console": [
+      2,
+      {"allow": ["warn", "error"]}
+    ]
+  }
+}
