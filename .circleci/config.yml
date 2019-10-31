@@ -97,6 +97,10 @@ jobs:
           key: node-cache-{{ .Branch }}-{{ checksum "package.json" }}
 
       - run:
+          name: Token
+          command: echo $NPM_TOKEN
+
+      - run:
           name: Authenticating with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
