@@ -1,0 +1,5 @@
+--report cobertura
+--reporter nyan
+--recursive
+--timeout 1000
+tests/mocha.init.js tests
