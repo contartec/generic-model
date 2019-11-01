@@ -61,7 +61,7 @@
     "dotenv": "^6.0.0",
     "module-alias": "^2.2.2",
     "mongodb": "^3.1.6",
-    "mongoose": "5.2.15",
+    "mongoose": "5.7.7",
     "mongoose-lifecycle": "^1.0.0",
     "redis": "^2.8.0",
     "redis-rejson": "^1.0.0"
