@@ -11,7 +11,7 @@
     "docs": "documentation build lib/** -f html -o docs",
     "docs:readme": "documentation readme --section API",
     "mocha": "cross-env NODE_ENV=test _mocha --opts mocha.opts",
-    "test": "cross-env NODE_ENV=test npm run mocha",
+    "test": "cross-env NODE_ENV=test npm run lint && npm run test:coverage",
     "test:watch": "cross-env NODE_ENV=test npm run lint && npm run mocha -- --watch",
     "test:coverage": "cross-env NODE_ENV=test nyc --reporter=text-summary --reporter=lcov --reporter=cobertura --report-dir=./coverage --reporter=html npm run mocha --reporter=min",
     "update:docs": "npm run docs && git add docs/. && git diff-index --quiet HEAD || git commit -m 'Updating `docs`'"
@@ -74,7 +74,8 @@
   "nyc": {
     "exclude": [
       "*.js",
-      "tests/*"
+      "tests/*",
+      "docs/*"
     ]
   }
 }
