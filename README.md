@@ -10,3 +10,7 @@ A set of (simple?) generic model classes
 ## Install
 
 `npm i @contart/generic-model`
+
+## Docs
+
+https://contartec.github.io/generic-model/
