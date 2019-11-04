@@ -41,7 +41,7 @@ const OPTIONS = {
   }
 }
 
-const { GenericModel, GenericSchema } = genericSchema(SCHEMA, OPTIONS, false)
+const { GenericModel, GenericSchema } = genericSchema(SCHEMA, OPTIONS)
 
 /**
  * The `max distance` (in `meters`) between the `lat/lng` and the (assumed by us) `nearest` `address`
