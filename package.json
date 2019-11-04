@@ -9,7 +9,8 @@
     "test": "./tests"
   },
   "files": [
-    "lib/*"
+    "lib/*",
+    "tests/mocks/*"
   ],
   "scripts": {
     "lint": "cross-env NODE_ENV=test eslint -c ./.eslintrc.json \"lib/**/*.js\" \"tests/**/*.js\"",
