@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8'>
-  <title>@contartec/generic-model 0.1.3 | Documentation</title>
+  <title>@contartec/generic-model 0.2.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
   <link href='assets/style.css' rel='stylesheet'>
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>@contartec/generic-model</h3>
-          <div class='mb1'><code>0.1.3</code></div>
+          <div class='mb1'><code>0.2.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -1331,7 +1331,7 @@
 <li>Broadcast model events (see [<code>mongoose-lifecycle</code>]<a href="https://www.npmjs.com/package/mongoose-lifecycle">https://www.npmjs.com/package/mongoose-lifecycle</a>)</li>
 </ul>
 
-    <div class='pre p1 fill-light mt0'>genericSchema(schema: mongoose.Schema, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, shouldCreateDBConnection: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+    <div class='pre p1 fill-light mt0'>genericSchema(schema: mongoose.Schema, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, dbConnectFunction: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>?): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
   
   
 
@@ -1370,15 +1370,16 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>shouldCreateDBConnection</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
-            = <code>true</code>)</code>
-	    Whether each 
+            <span class='code bold'>dbConnectFunction</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>?)</code>
+	    The 
 <code>db</code>
- command should create a 
-<code>connection</code>
- or not (for 
+ connect 
+<code>function</code>
+ (for 
 <code>Lambda</code>
- and others)
+ and alikes, see 
+<a href="https://mongoosejs.com/docs/lambda.html">https://mongoosejs.com/docs/lambda.html</a>
+)
 
           </div>
           
@@ -1414,8 +1415,27 @@
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// You.js</span>
-<span class="hljs-keyword">const</span> { GenericModel, GenericSchema } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lib/models/GenericSchema'</span>)(SCHEMA, OPTIONS)
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// db.js</span>
+<span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose'</span>)
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> mongoose.connect(process.env.MONGODB_URL)
+
+<span class="hljs-comment">// You.js</span>
+<span class="hljs-keyword">const</span> db = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./db'</span>)
+
+<span class="hljs-keyword">const</span> SCHEMA = {
+   <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+   <span class="hljs-attr">life</span>: <span class="hljs-built_in">Number</span>,
+   ...
+}
+
+<span class="hljs-keyword">const</span> OPTIONS = {
+   <span class="hljs-attr">_id</span>     : <span class="hljs-literal">true</span>,
+   <span class="hljs-attr">strict</span>  : <span class="hljs-literal">false</span>,
+   ...
+}
+
+<span class="hljs-keyword">const</span> { GenericModel, GenericSchema } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lib/models/GenericSchema'</span>)(SCHEMA, OPTIONS, db)
 
 <span class="hljs-built_in">module</span>.exports = mongoose.model(<span class="hljs-string">'You'</span>, GenericSchema)
 
