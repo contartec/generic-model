@@ -1,0 +1,5 @@
+.circleci/
+coverage/
+tests/
+.nyc_output/
+mocha.opts
