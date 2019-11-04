@@ -104,7 +104,7 @@ jobs:
           name: Publishing package
           command: npm publish
 
-  docs_upload:
+  test_coverage_upload:
     working_directory: /home/circleci/generic-model
 
     docker:
@@ -144,15 +144,18 @@ workflows:
           requires:
             - node_dependencies
 
-      - npm_publish:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              only: master
+      - test_coverage_upload:
           requires:
             - tests
-      
-      - docs_upload:
+
+      - approval:
+          filters:
+            branches:
+              only: master
+          type: approval
           requires:
-            - npm_publish
+            - tests
+
+      - npm_publish:
+          requires:
+            - approval
