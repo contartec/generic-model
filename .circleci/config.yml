@@ -144,14 +144,17 @@ workflows:
           requires:
             - node_dependencies
 
-      - npm_publish:
+      - approval:
           filters:
-            tags:
-              only: /^v.*/
             branches:
               only: master
+          type: approval
           requires:
-            - tests
+            - test
+
+      - npm_publish:
+          requires:
+            - approval
       
       - docs_upload:
           requires:
