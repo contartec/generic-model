@@ -146,20 +146,13 @@ workflows:
 
       - approval:
           filters:
-            tags:
-              only: /^v.*/
             branches:
               only: master
           type: approval
           requires:
-            - test
+            - tests
 
       - npm_publish:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              only: master
           requires:
             - approval
       
